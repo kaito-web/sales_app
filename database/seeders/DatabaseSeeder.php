@@ -14,13 +14,19 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => '管理者',
-        //     'email' => 'admin@example.com',
-        //     'role' => 'admin',
-        // ]);
-
         \App\Models\CompanyProfile::factory(20)->create();
+
+        // 二回目以降は下記を消してください
+        \App\Models\User::factory()->create([
+            'name' => '管理者',
+            'email' => 'admin@example.com',
+            'role' => 'admin',
+        ]);
+        \App\Models\User::factory()->create([
+            'name' => '一般',
+            'email' => 'test@example.com',
+            'role' => 'admin',
+        ]);
     }
 }
+
