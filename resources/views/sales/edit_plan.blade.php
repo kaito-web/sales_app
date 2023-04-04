@@ -71,13 +71,14 @@
                         @foreach ($c_profiles as $company_profile)
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" name="company_id[]"
-                                    value="{{ $company_profile->id }}" id="company_{{ $company_profile->id }}">
-                                {{-- <input type="hidden" name="selectedCompanyIds" id="selectedCompanyIds"> --}}
+                                    value="{{ $company_profile->id }}" id="company_{{ $company_profile->id }}"
+                                    {{ in_array($company_profile->id, $selectedCompanyIds) ? 'checked' : '' }}>
 
                                 <label class="form-check-label"
                                     for="company_{{ $company_profile->id }}">{{ $company_profile->company_name }}</label>
                             </div>
                         @endforeach
+
                     </div>
                     <div class="container my-4">
                         {{-- <div class="d-flex justify-content-center">
@@ -105,3 +106,4 @@
 </body>
 
 </html>
+
