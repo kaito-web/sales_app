@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
         \App\Models\CompanyProfile::factory(20)->create();
 
-        // 二回目以降は下記を消してください
+        // ※二回目以降は下記を消してください
         \App\Models\User::factory()->create([
             'name' => '管理者',
             'email' => 'admin@example.com',
