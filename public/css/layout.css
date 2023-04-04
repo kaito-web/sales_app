@@ -1,0 +1,20 @@
+.img-hidden{
+    max-height: 300px;
+    overflow: hidden;
+}
+.container-m {
+    margin-top: 80px;
+    }
+footer.footer{
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .container-s {
+    margin-top: 40px;
+    }

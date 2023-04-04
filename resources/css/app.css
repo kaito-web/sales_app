@@ -1,0 +1,10 @@
+/* resources/css/app.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'swiper/swiper-bundle.min.css';
+
+
+button {
+    transition: background-color 0.2s ease-in-out;
+  }
