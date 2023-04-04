@@ -27,25 +27,25 @@ class PlansController extends Controller
         return view('sales/plans', compact('plans', 'likedCompanyIds', 'c_profiles'));
     }
     // プランの編集
-public function edit($id)
-{
-    $user_id = Auth::id();
-
-    $c_profiles = CompanyProfile::all();
-    // $c_profiles = CompanyProfile::orderBy('created_at', 'desc')->paginate(20);
-
-    $likedCompanyIds = [];
-    if (Auth::user() !== null) {
-        $likedCompanyIds = Auth::user()->likes->pluck('company_id')->toArray();
-    }
-
-    $selectedCompanyIds = session('selectedCompanyIds', []);
-
-    $plan = PlanProfiles::findOrFail($id);
+    public function edit($id)
+    {
+        $user_id = Auth::id();
     
-    return view('sales/edit_plan', compact('plan', 'likedCompanyIds', 'id', 'c_profiles'));
-}
-
+        $c_profiles = CompanyProfile::all();
+        // $c_profiles = CompanyProfile::orderBy('created_at', 'desc')->paginate(20);
+    
+        $likedCompanyIds = [];
+        if (Auth::user() !== null) {
+            $likedCompanyIds = Auth::user()->likes->pluck('company_id')->toArray();
+        }
+    
+        $plan = PlanProfiles::findOrFail($id);
+    
+        // Get the associated company IDs for the current plan
+        $selectedCompanyIds = $plan->companies->pluck('id')->toArray();
+    
+        return view('sales/edit_plan', compact('plan', 'likedCompanyIds', 'id', 'c_profiles', 'selectedCompanyIds'));
+    }
 
 
 // アップデートを行う
@@ -61,6 +61,8 @@ public function update(Request $request, $id)
     return redirect()->route('plans.index')->with('success', 'プランが更新されました。');
 }
 
+
+
     // プランの削除を行い会社一覧から削除
     public function destroy($id)
     {
@@ -72,7 +74,10 @@ public function update(Request $request, $id)
 
         return redirect()->route('plans.index')->with('success', 'プランが正常に削除されました');
     }
-// プランの表示
+
+
+
+// プランの新規作成
     public function create()
     {
         $user_id = Auth::id();
@@ -91,8 +96,11 @@ public function update(Request $request, $id)
             $likedCompanyIds = Auth::user()->likes->pluck('company_id')->toArray();
         }
 
-        return view('sales/PlanCreate', compact('plans', 'likedCompanyIds', 'c_profiles'));
+        return view('sales/PlanCreate', compact('plans', 'likedCompanyIds', 'c_profiles','plan_company_ids'));
     }
+
+
+
 
     // プランの登録
     public function store(Request $request)
@@ -141,3 +149,4 @@ public function update(Request $request, $id)
     // }
 
 }
+
