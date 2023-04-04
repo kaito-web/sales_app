@@ -44,16 +44,11 @@
                                 class="btn btn-outline-success btn-success">詳細</a></td>
                     </tr>
                 @endforeach
-                <div class="container my-4">
-                    <div class="d-flex justify-content-center">
-                        {{ $c_profiles->links('pagination::custom') }}
-                    </div>
-                </div>
             </table>
             <div class="container my-4">
-                <div class="d-flex justify-content-center">
+                {{-- <div class="d-flex justify-content-center">
                     {{ $c_profiles->links('pagination::custom') }}
-                </div>
+                </div> --}}
             </div>
         </div>
 </body>
