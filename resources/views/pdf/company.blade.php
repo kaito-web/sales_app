@@ -63,7 +63,7 @@
                     @foreach ($userNotes as $note)
                         <tr>
                             <td scope="row">{{ $note->created_at->format('Y/m/d H:i:s') }}</td>
-                            <td scope="row">{{ $note->note }}</td>
+                            <td scope="row">{!! preg_replace("/|沈|切り|ガチャ|下劣|汚|うるさい|嫌|けんほろ|死|馬鹿|アホ|バカ|してくる|黙/",'XX',e($note->note)) !!}</td>
                         </tr>
                     @endforeach
                 </table>
